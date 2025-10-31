@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VibePalette Studio</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent: #7c3aed;
+      --glass: rgba(255,255,255,0.04);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#081126);}
+    .app{
+      max-width:980px;margin:32px auto;padding:20px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow:0 8px 30px rgba(2,6,23,0.6);backdrop-filter: blur(6px);
+    }
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    h1{color:#e6eef6;font-size:20px;margin:0}
+    p.lead{color:var(--muted);margin:6px 0 16px;font-size:13px}
+    .top-row{display:flex;gap:12px;flex-wrap:wrap}
+    .controls{display:flex;gap:8px;align-items:center}
+    button{
+      background:var(--glass);border:1px solid rgba(255,255,255,0.04);color:#e6eef6;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:600;
+    }
+    button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+    .preview{
+      margin-top:18px;border-radius:12px;overflow:hidden;height:160px;display:flex;align-items:center;justify-content:center;
+      color:white;font-weight:700;font-size:18px;position:relative;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .swatches{display:flex;gap:8px;padding:12px;margin-top:12px}
+    .swatch{flex:1;height:60px;border-radius:8px;display:flex;align-items:end;justify-content:center;padding:8px;color:#001; font-weight:700;cursor:pointer; user-select:none}
+    .sidebar{margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .saved-list{margin-top:14px;display:flex;gap:8px;flex-direction:column}
+    .saved-item{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+    input.input{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:8px;color:#e6eef6;min-width:160px}
+    small.muted{color:var(--muted);font-size:12px}
+    .actions{margin-left:auto;display:flex;gap:8px}
+    footer{margin-top:18px;color:var(--muted);font-size:12px;text-align:center}
+    @media (max-width:640px){.swatches{flex-direction:column}.preview{height:120px}}
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <header>
+      <div>
+        <h1>VibePalette Studio</h1>
+        <p class="lead">Generate, tweak, save, and export modern gradients and palettes — no signup required.</p>
+      </div>
+      <div class="controls">
+        <button id="randomBtn">Randomize</button>
+        <button id="exportBtn" class="ghost">Export JSON</button>
+      </div>
+    </header>
+
+    <div class="preview" id="preview">Live Gradient Preview</div>
+
+    <div class="swatches" id="swatches" aria-live="polite">
+      <!-- swatches appear here -->
+    </div>
+
+    <div class="sidebar">
+      <input id="paletteName" class="input" placeholder="Palette name (optional)">
+      <button id="saveBtn">Save Palette</button>
+      <div class="actions">
+        <button id="copyCssBtn" class="ghost">Copy CSS</button>
+        <button id="importBtn" class="ghost">Import JSON</button>
+      </div>
+    </div>
+
+    <div class="saved-list" id="savedList">
+      <!-- saved palettes show here -->
+    </div>
+
+    <footer>Built with ♥ — download or save palettes to your browser.</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
